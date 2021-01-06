@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::orderBy('name','ASC')->paginate(5);
+        $products = Product::orderBy('id','ASC')->paginate(5);
         //afiseaza dupa id nume si asc
         $value=($request->input('page',1)-1)*5;
         return view('products.list',compact('products'))->with('i',$value);

@@ -18,5 +18,57 @@ Route::get('/', function () {
 });
 */
 
-Route::get('/', 'ProductController@index'); //afisare lista sarcini pe pagina de start
-Route::resource('products', 'ProductController');// Ruta de resurse va genera CRUD URI, un controller de tip resource ce va crea un fisier cu functii definite pt create, delete, update
+//in momentul accesarii paginii, implicit vom fi redirectati pe pagina de home
+//     Route::get('/', 'HomeController@index')->name('home');
+//     Auth::routes();
+//daca suntem logati, vom fi redirectati pe pagina de home care este list.blade.php din ProductController
+//     Route::group(['middleware'=>'auth'], function(){ 
+
+//             Route::get('/home', 'ProductController@index'); //afisare lista sarcini pe pagina de start
+//             Route::resource('products', 'ProductController');// Ruta de resurse va genera CRUD URI, un controller de tip resource ce va crea un fisier cu functii definite pt create, delete, update
+//      });
+
+// Route::get('admin_area', ['middleware' => 'admin', function () {
+//     //
+// }]);
+
+// Route::get('admin/profile', function () {
+//     Route::get('/', 'ProductController@index'); //afisare lista sarcini pe pagina de start
+//     Route::resource('products', 'ProductController');
+//     })->middleware('admin');
+
+
+Route::view('/', 'welcome');
+    Auth::routes();
+
+    Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm');
+    Route::get('/login/user', 'Auth\LoginController@showUserLoginForm');
+    Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm');
+    Route::get('/register/user', 'Auth\RegisterController@showUserRegisterForm');
+
+    Route::post('/login/admin', 'Auth\LoginController@adminLogin');
+    Route::post('/login/user', 'Auth\LoginController@userLogin');
+    Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
+    Route::post('/register/user', 'Auth\RegisterController@createUser');
+
+    Route::view('/home', 'home')->middleware('auth');
+    Route::view('/admin', 'admin');
+    Route::view('/user', 'user');
+
+    Route::patch('update-cart', 'ShopsController@update'); //modific cos
+    Route::delete('remove-from-cart', 'ShopsController@remove');//sterg din cos
+
+    Route::get('/shop', 'ShopsController@index'); //afisare pagina de start
+    Route::get('cart', 'ShopsController@cart'); //cos
+    Route::get('add-to-cart/{id}', 'ShopsController@addToCart');//adaug in cos
+    Route::patch('update-cart', 'ShopsController@update'); //modific cos
+    Route::delete('remove-from-cart', 'ShopsController@remove');//sterg din cos
+
+    //doar adminii au acces la products
+    Route::GET('/products', 'ProductController@index')->middleware('auth:admin');
+    Route::resource('products', 'ProductController')->middleware('auth:admin');
+
+    // Route::get('/products', ['middleware' => 'auth:admin', function () {
+    //     Route::GET('/products', 'ProductController@index');
+    //     Route::resource('products', 'ProductController');
+    // }]);
