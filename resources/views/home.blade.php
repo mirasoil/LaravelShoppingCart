@@ -1,4 +1,4 @@
-<!-- @extends('layouts.app')
+@extends('layouts.auth')
 @section('content')
 <div class="container">
     <div class="row">
@@ -11,26 +11,10 @@
                         {{ session('status') }}
                         </div>
                     @endif
-        <div> <a href="{{URL::to('products') }}"> Show all movies</a> </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection -->
-
-
-@extends('layouts.auth')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
+                    <div class="card-body">
                      Hi there, regular user
+                </div>
+        <div> <a href="{{URL::to('products') }}"> Show all movies</a> </div>
                 </div>
             </div>
         </div>
