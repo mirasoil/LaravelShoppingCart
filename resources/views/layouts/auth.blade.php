@@ -40,30 +40,24 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-        <a class="nav-link" href="{{ url('/products') }}">Products <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ url('/shop') }}">Products <span class="sr-only">(current)</span></a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        <li class="nav-item dropdown"><a class="nav-link" href="{{ url('/products') }}">Control Panel</a></li>
                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Hi There <span class="caret"></span>
-                            </a>
-
-                            <div id="navbar" class="collapse navbar-collapse">
-                             <ul class="nav navbar-nav">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-                            </ul>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
-                            </div>
                         </li>
+                        
                     </ul>
                 </div>
             </div>

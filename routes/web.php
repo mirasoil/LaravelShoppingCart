@@ -37,8 +37,7 @@ Route::get('/', function () {
 //     Route::resource('products', 'ProductController');
 //     })->middleware('admin');
 
-Route::get('/products', 'ProductController@index');
-Route::resource('products', 'ProductController');
+
 Route::view('/', 'welcome');
     Auth::routes();
 
@@ -56,5 +55,20 @@ Route::view('/', 'welcome');
     Route::view('/admin', 'admin');
     Route::view('/user', 'user');
 
+    Route::patch('update-cart', 'ShopsController@update'); //modific cos
+    Route::delete('remove-from-cart', 'ShopsController@remove');//sterg din cos
 
+    Route::get('/shop', 'ShopsController@index'); //afisare pagina de start
+    Route::get('cart', 'ShopsController@cart'); //cos
+    Route::get('add-to-cart/{id}', 'ShopsController@addToCart');//adaug in cos
+    Route::patch('update-cart', 'ShopsController@update'); //modific cos
+    Route::delete('remove-from-cart', 'ShopsController@remove');//sterg din cos
 
+    //doar adminii au acces la products
+    Route::GET('/products', 'ProductController@index')->middleware('auth:admin');
+    Route::resource('products', 'ProductController')->middleware('auth:admin');
+
+    // Route::get('/products', ['middleware' => 'auth:admin', function () {
+    //     Route::GET('/products', 'ProductController@index');
+    //     Route::resource('products', 'ProductController');
+    // }]);
