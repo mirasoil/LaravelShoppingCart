@@ -1,4 +1,4 @@
-@extends('layoutcart')
+@extends('layouts.layoutcart')
 @section('title', 'Products')
 @section('content')
  <div class="container products">
@@ -18,4 +18,8 @@
  @endforeach
     </div><!-- End row -->
  </div>
+ <!--- Space between page and footer --->
+ @for ($i = 0; $i < 4; $i++)
+    <br>
+@endfor
 @endsection

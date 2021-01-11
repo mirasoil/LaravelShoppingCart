@@ -51,6 +51,7 @@ class ShopsController extends Controller
     session()->put('cart', $cart);
     return redirect()->back()->with('success', 'Product successfully added to cart!');
     }
+
     public function update(Request $request){
         if($request->id and $request->quantity)
         {
@@ -60,6 +61,17 @@ class ShopsController extends Controller
             session()->flash('success', 'Cart updated!');
         }
     }
+     
+//PUT REQUEST
+// function updateCourse(){
+//     axios
+//         .patch('/shop',    //tipul cererii si destinatia
+//         {                                            //la post, datele se pot specifica direct in corpul metodei
+//             id: ?
+//         })
+//         .then(res => showOutput(res))
+// }
+
     public function remove(Request $request){
         if($request->id) {
         $cart = session()->get('cart');

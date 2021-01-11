@@ -38,12 +38,15 @@
 }}</textarea>
  </div>
  <div class="form-group">
- <input type="submit" value="Salvare Modificari" class="btn btn-info">
+ <input type="submit" value="Save" class="btn btn-info">
  <a href="{{route('products.index') }}" class="btn btn-default">Cancel</a>
  </div>
  {!! Form::close() !!}
  </div>
  </div>
+ @for ($i = 0; $i < 4; $i++)
+    <br>
+@endfor
 @endsection
 <!---populam campurile pe baza routelor
 prin task update cand da click pe modificare se transmite id-ul in controller care va insera in baza de date datele

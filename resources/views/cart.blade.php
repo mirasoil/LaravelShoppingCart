@@ -45,12 +45,17 @@ class="fa fa-trash-o"></i>Delete</button>
  <td class="text-center"><strong>Total {{ $total }}</strong></td>
  </tr>
  <tr>
- <td><a href="{{ url('/shop') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i>Continue shopping</a></td>
+ <td><a href="{{ url('/shop') }}" class="btn btn-warning">Continue shopping</a></td>
  <td colspan="2" class="hidden-xs"></td>
  <td class="hidden-xs text-center"><strong>Total ${{ $total }}</strong></td>
  </tr>
  </tfoot>
  </table>
+
+@for ($i = 0; $i < 13; $i++)
+    <br>
+@endfor
+
 @section('scripts')
  <script type="text/javascript">
  $(".update-cart").click(function (e) {

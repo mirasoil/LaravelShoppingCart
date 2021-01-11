@@ -25,5 +25,8 @@
  </div>
  </div>
  </div>
+ @for ($i = 0; $i < 5; $i++)
+    <br>
+@endfor
 @endsection
 <!--- afiseaza datele pe ecran cum sunt in baza de date cu id-ul curent --->

@@ -2,23 +2,23 @@
 <html>
 <head>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- <title>@yield('title')</title>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <title>Smartself</title>
+
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/fontawesome.min.css">
  <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> 
  <!---Style for navbar --->
  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
- 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
             
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Smartself') }}
+                    Smartself
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -96,11 +96,50 @@
 <div class="container page">
  @yield('content')
 </div>
-<footer class="w3-container w3-black" style="padding:10px">
-  	<h3 class="w3-opacity w3-medium">Smartself -Smart yourself !</h3>
- 	<p class="w3-opacity w3-medium">All rights reserved.</p>
- 	<p class="w3-opacity w3-medium">2020</p>
-</footer>
+<!-- Footer -->
+<footer>
+        	<div class="footer-top">
+		        <div class="container">
+		        	<div class="row">
+		        		<div class="col-md-3 footer-about wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+		        			<h3>About me</h3>
+		        			<p>
+		        				I am a self-taught programmer always looking for new and creative ideas to improve my everyday work.
+		        			</p>
+	                    </div>
+		        		<div class="col-md-4 offset-md-1 footer-contact wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">
+		        			<h3>Contact</h3>
+		                	<p><i class="fas fa-map-marker-alt"></i> Miraslau, Alba</p>
+		                	<p><i class="fas fa-phone"></i> Phone: 0752336523</p>
+		                	<a href="mailto:ispas_teodora@yahoo.com"><p><i class="fas fa-envelope"></i> Email</p></a>
+	                    </div>
+	                    <div class="col-md-4 footer-links wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+	                    	<div class="row">
+	                    		<div class="col">
+	                    			<h3>Links</h3>
+	                    		</div>
+	                    	</div>
+	                    	<div class="row">
+	                    		<div class="col-md-6">
+	                    			<p><a class="scroll-link" href="/home">Home</a></p>
+	                    			<p><a href="/shop">Products</a></p>
+	                    			<p><a href="#">Our clients</a></p>
+	                    		</div>
+	                    		<div class="col-md-6">
+	                    			<p><a href="#">Plans &amp; pricing</a></p>
+	                    			<p><a href="#">Affiliates</a></p>
+	                    			<p><a href="#">Terms</a></p>
+	                    		</div>
+	                    	</div>
+	                    </div>
+		            </div>
+		        </div>
+	        </div>
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://www.facebook.com/ispas.teodora.9"> Ispas Teodora</a>
+  </div>
+        </footer>
+<!-- Footer -->
 @yield('scripts')
 </body>
 </html>
