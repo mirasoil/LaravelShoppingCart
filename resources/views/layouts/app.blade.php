@@ -19,6 +19,12 @@
     @include('navigation.adminnav')
 @elseif(Auth::guard('user')->check())
     @include('navigation.usernav')
+@else
+<nav class="navbar navbar-expand-lg navbar-light bg-light">     
+    <a class="navbar-brand" href="{{ url('/') }}">
+        Smartself
+    </a>
+</nav>
 @endif
 <div class="container">
     <div class="row">
