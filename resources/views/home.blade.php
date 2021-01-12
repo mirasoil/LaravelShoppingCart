@@ -14,7 +14,7 @@
                     <div class="card-body">
                      Hi there, regular user
                 </div>
-        <div> <a href="{{URL::to('products') }}"> Show all movies</a> </div>
+        <div> <a href="{{URL::to('products') }}"> Show all products</a> </div>
                 </div>
             </div>
         </div>

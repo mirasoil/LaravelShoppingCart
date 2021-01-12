@@ -82,4 +82,14 @@ class ShopsController extends Controller
         session()->flash('success', 'Product successfully deleted!');
         }  
     }
+    //Confirmarea comenzii care initial ne redirecta pe pagina confirm cu un mesaj specific dar acum doar goleste cosul si afiseaza un mesaj
+    public function confirm(){
+        session()->forget('cart');
+        return redirect()->back()->with('success', 'Order placed succesfully!!');
+    }
+    //Functie ce gleste cosul si returneaza un mesaj specific
+    public function empty(){
+        session()->forget('cart');
+        return redirect()->back()->with('success', 'Cart empty!');
+        } 
 }

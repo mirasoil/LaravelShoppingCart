@@ -67,7 +67,17 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+<!---Daca exista o sesiune de login, vreau ca pe pagina principala sa imi afiseze doar butonul de logout--->
+@if(Auth::guard('admin')->check() OR Auth::guard('user')->check())
+<div class="top-right links">
+    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        {{ __('Logout') }}
+    </a>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+</div>
+@elseif (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
@@ -79,7 +89,8 @@
                         @endif
                     @endauth
                 </div>
-            @endif
+@endif
+            
 
             <div class="content">
             <a href="/shop" style="text-decoration: none;color: gray;">

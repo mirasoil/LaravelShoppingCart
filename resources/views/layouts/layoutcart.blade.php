@@ -105,7 +105,7 @@
 		            </div>
 		        </div>
 	        </div>
-            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <div class="footer-copyright text-center py-3">© 2021 Copyright:
     <a href="https://www.facebook.com/ispas.teodora.9"> Ispas Teodora</a>
   </div>
         </footer>
