@@ -9,10 +9,13 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-                    Hi there, awesome user
+                    Hi there, awesome user !
                 </div>
             </div>
         </div>
     </div>
 </div>
+@for ($i = 0; $i < 23; $i++)
+    <br>
+@endfor
 @endsection

@@ -15,4 +15,7 @@
         </div>
     </div>
 </div>
+@for ($i = 0; $i < 23; $i++)
+    <br>
+@endfor
 @endsection

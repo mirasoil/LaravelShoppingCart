@@ -12,63 +12,40 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
 */
-
-//in momentul accesarii paginii, implicit vom fi redirectati pe pagina de home
-//     Route::get('/', 'HomeController@index')->name('home');
-//     Auth::routes();
-//daca suntem logati, vom fi redirectati pe pagina de home care este list.blade.php din ProductController
-//     Route::group(['middleware'=>'auth'], function(){ 
-
-//             Route::get('/home', 'ProductController@index'); //afisare lista sarcini pe pagina de start
-//             Route::resource('products', 'ProductController');// Ruta de resurse va genera CRUD URI, un controller de tip resource ce va crea un fisier cu functii definite pt create, delete, update
-//      });
-
-// Route::get('admin_area', ['middleware' => 'admin', function () {
-//     //
-// }]);
-
-// Route::get('admin/profile', function () {
-//     Route::get('/', 'ProductController@index'); //afisare lista sarcini pe pagina de start
-//     Route::resource('products', 'ProductController');
-//     })->middleware('admin');
-
 
 Route::view('/', 'welcome');
     Auth::routes();
 
+    //Accesarea paginilor de login specifice fiecarui tip de utilizator
     Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm');
     Route::get('/login/user', 'Auth\LoginController@showUserLoginForm');
     Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm');
     Route::get('/register/user', 'Auth\RegisterController@showUserRegisterForm');
 
+    //Trimiterea datelor din formularele generate anterior
     Route::post('/login/admin', 'Auth\LoginController@adminLogin');
     Route::post('/login/user', 'Auth\LoginController@userLogin');
     Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
     Route::post('/register/user', 'Auth\RegisterController@createUser');
 
-    Route::view('/home', 'home')->middleware('auth');
-    Route::view('/admin', 'admin');
-    Route::view('/user', 'user');
+    Route::view('/home', 'home')->middleware('auth'); //pagina home e vizibila doar daca sunt logat
+    Route::view('/admin', 'admin')->middleware('auth:admin'); //pagina de admin e vizibila doar pentru admini (dashboard-ul cu Hi, boss!)
+    Route::view('/user', 'user')->middleware('auth:user'); //pagina de useri (dashboard-ul cu Hi awesome user) e vizibil doar pentru useri, dupa logare sunt redirectionati aici
+    
+    //CRUD pe cos - accesibil doar pentru useri
+    Route::patch('update-cart', 'ShopsController@update')->middleware('auth:user'); //modific cosul (doar pentru useri) - prin patch pentru a modifica toate datele existente (in mare parte doar cantitatea in cazul de fata)
+    Route::delete('remove-from-cart', 'ShopsController@remove')->middleware('auth:user');  //sterg din cos
 
-    Route::patch('update-cart', 'ShopsController@update'); //modific cos
-    Route::delete('remove-from-cart', 'ShopsController@remove');//sterg din cos
+    Route::get('/shop', 'ShopsController@index')->middleware('auth:user');  //afisare magazin - user
+    Route::get('cart', 'ShopsController@cart')->middleware('auth:user');  //cosul propriu zis - user
+    Route::get('add-to-cart/{id}', 'ShopsController@addToCart')->middleware('auth:user');  //adaug in cos
+    Route::patch('update-cart', 'ShopsController@update')->middleware('auth:user');  //modific cos
+    Route::delete('remove-from-cart', 'ShopsController@remove')->middleware('auth:user'); //sterg din cos
+    Route::get('/confirm', 'ShopsController@confirm')->middleware('auth:user'); //pentru confirmarea comenzii
+    Route::get('cart/success', 'ShopsController@empty')->middleware('auth:user');
 
-    Route::get('/shop', 'ShopsController@index'); //afisare pagina de start
-    Route::get('cart', 'ShopsController@cart'); //cos
-    Route::get('add-to-cart/{id}', 'ShopsController@addToCart');//adaug in cos
-    Route::patch('update-cart', 'ShopsController@update'); //modific cos
-    Route::delete('remove-from-cart', 'ShopsController@remove');//sterg din cos
-
-    //doar adminii au acces la products
+    //CRUD pe products, doar adminii au acces la pagina de modificare produse in baza de date
     Route::GET('/products', 'ProductController@index')->middleware('auth:admin');
     Route::resource('products', 'ProductController')->middleware('auth:admin');
 
-    // Route::get('/products', ['middleware' => 'auth:admin', function () {
-    //     Route::GET('/products', 'ProductController@index');
-    //     Route::resource('products', 'ProductController');
-    // }]);
